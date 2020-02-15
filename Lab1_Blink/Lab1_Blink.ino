@@ -13,8 +13,19 @@ void timeBlink(int number){
 }
 
 
+void dimmer(int freq, int duty) {
+  int period, onTime, offTime;
+  period = 1000/freq;
+  onTime = period * duty / 100;
+  offTime = period - onTime;
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(onTime);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(offTime);
+}
+
 void loop() {
-  timeBlink(number);
+  dimmer(20, number);  //increase the freq so that the dimming will occur
   number++;
    if(number == 4){
     number = 1;
